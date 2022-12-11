@@ -1,10 +1,12 @@
 import run from "aocrunner";
+import { MonkeyManager } from "./monkey.js"
 
 const parseInput = (rawInput: string) => rawInput;
 
 const part1 = (rawInput: string) =>
 {
-	const input = parseInput(rawInput);
+	let mm = new MonkeyManager(false);
+	mm.playRounds(10000);
 };
 
 const part2 = (rawInput: string) =>
