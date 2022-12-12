@@ -1,18 +1,20 @@
-export class Cell{
-	elevation : number;
-	visited : boolean;
+export class Cell {
+	elevation: number;
+	visited: boolean;
 	steps: number;
-	x : number;
+	x: number;
 	y: number;
-	parent : Cell;
+	parent: Cell;
 
-	constructor(elevation,x,y)
-	{
+	constructor(elevation, x, y) {
 		this.elevation = elevation;
 		this.visited = false;
 		this.x = x;
 		this.y = y;
 		this.steps = 0;
 	}
-	
+
+	toString() {
+		return `${this.x},${this.y} : ${this.elevation} (${this.steps})`;
+	}
 }
