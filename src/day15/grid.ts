@@ -79,6 +79,55 @@ export class Grid {
 		return nbResult;
 	}
 
+	isCaseCoveredBySensor(x,y)
+	{
+		for(let s of this.sensors)
+		{
+			if(s.distanceTo(x,y) <= s.distanceToBeacon)
+				return s;
+		}
+		return null;
+	}
+
+	getNextPossibleCase(x,y, sensor)
+	{
+		let distanceToLine = sensor.distanceTo(sensor.x, y);
+		let intervalSize = sensor.distanceToBeacon - distanceToLine;
+		return sensor.x + intervalSize;
+	}
+
+
+	getDistressSignalBetween(min, max)
+	{
+		let candidate = [];
+		for(let y = min ; y < max ; y++)
+		{
+			if(y%1000 == 0)
+			{
+				console.log(y);
+			}
+			
+			for(let x = min ; x < max ; x++)
+			{
+				let sensor = this.isCaseCoveredBySensor(x,y);
+				if(!sensor)
+				{
+					//console.log(`Found : ${x} ${y}`);
+					candidate.push({x:x, y:y});
+					x = x+1;
+				}
+				else
+				{
+					let newX =this.getNextPossibleCase(x,y,sensor);
+					//console.log(`${x} -> ${newX}`); 
+					x = newX;
+				}
+			}
+		}
+
+		console.log(candidate);
+	}
+
 	getImpossiblePositionp2(requestedY, min, max) {
 		let pos = [];
 		let nbResult = 0;

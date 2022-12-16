@@ -55,7 +55,7 @@ const part2 = (rawInput: string) => {
 		}
 	});
 
-	return map.getImpossiblePositionBetween(0, 20);
+	return map.getDistressSignalBetween(0,4000000);
 };
 
 run({
